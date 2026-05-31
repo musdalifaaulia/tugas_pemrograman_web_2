@@ -75,7 +75,10 @@ return to_route('genre.index')
      */
     public function edit(Genre $genre)
     {
-        //
+        return view('genre.edit',[
+            'title' => 'Edit Genre',
+            'genre' => $genre,
+            ]);
     }
 
     /**
@@ -83,7 +86,26 @@ return to_route('genre.index')
      */
     public function update(Request $request, Genre $genre)
     {
-        //
+        $validated = $request->validate([
+    'nama_genre' => 'required|max:255',
+    'deskripsi' => 'required|max:255',
+    'status' => 'required|max:255',
+], [
+
+    'nama_genre.required' => 'Nama Genre tidak boleh kosong',
+    'nama_genre.max' => 'Nama Genre maximal 255 karakter',
+
+    'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+    'deskripsi.max' => 'Deskripsi maximal 255 karakter',
+    
+    'status.required' => 'Status tidak boleh kosong',
+    'status.max' => 'Status maximal 255 karakter',
+]);
+
+$genre->update($validated);
+
+return to_route('genre.index')
+    ->withSuccess('Data Genre berhasil diubah');
     }
 
     /**

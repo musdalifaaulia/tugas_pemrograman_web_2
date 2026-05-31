@@ -35,6 +35,7 @@
                 <th>Nama Genre</th>
                 <th>Deskripsi</th>
                 <th>Status</th>
+                <th>Aksi</th>
             </tr>
 
         </thead>
@@ -48,6 +49,10 @@
                     <td>{{ $item->nama_genre }}</td>
                     <td>{{ $item->deskripsi }}</td>
                     <td>{{ $item->status }}</td>
+                    <td style="white-space: nowrap;">
+                        <a class="btn btn-warning btn-sm" href="{{ route('genre.edit', $item) }}"role="button">Edit</a>
+
+                    </td>
 
                 </tr>
 
