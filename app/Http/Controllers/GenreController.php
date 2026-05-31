@@ -10,9 +10,19 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+    return view('genre.index', [
+        'title' => 'Genre',
+        'genres' => Genre::latest()
+            ->when($request->search, function ($query, $search) {
+                return $query->where('nama_genre', 'like', "%{$search}%")
+                    ->orWhere('deskripsi', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%");
+            })
+            ->paginate(5)
+            ->withQueryString(),
+    ]);
     }
 
     /**

@@ -28,7 +28,7 @@
 
                     <a class="nav-link" href="{{ route('Movie.index') }}">Movie</a>
 
-                    <a class="nav-link" href="#">Genre</a>
+                    <a class="nav-link" href="{{ route('genre.index') }}">Genre</a>
 
                     <a class="nav-link" href="#">Review</a>
 

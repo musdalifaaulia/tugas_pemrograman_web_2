@@ -1,0 +1,66 @@
+<x-app>
+
+    <x-slot:title>{{ $title }}</x-slot>
+
+    @session('success')
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endsession
+
+    <form action="{{ route('genre.index') }}" method="GET" class="mb-3">
+        <div class="row">
+
+            <div class="col-md-10">
+                <input type="text" name="search" class="form-control" placeholder="Cari Genre..."
+                    value="{{ request('search') }}">
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100">Search</button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <table class="table table-bordered border-primary">
+
+        <thead class="table-primary">
+
+            <tr>
+                <th>No</th>
+                <th>Nama Genre</th>
+                <th>Deskripsi</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @forelse ($genres as $item)
+                <tr>
+
+                    <td>{{ $genres->firstItem() + $loop->index }}</td>
+                    <td>{{ $item->nama_genre }}</td>
+                    <td>{{ $item->deskripsi }}</td>
+                    <td>{{ $item->status }}</td>
+
+                </tr>
+
+            @empty
+                <tr>
+                    <td colspan="4" class="text-center">
+                        Data Genre Tidak Ditemukan
+                    </td>
+                </tr>
+            @endforelse
+
+        </tbody>
+
+    </table>
+
+    {{ $genres->links() }}
+
+</x-app>
