@@ -23,7 +23,8 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('Movie.create', 
+        ['title' => 'Tambah Data Movie']);
     }
 
     /**
@@ -31,7 +32,34 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $validated = $request->validate([
+    'judul' => 'required|max:255',
+    'sutradara' => 'required|max:255',
+    'tahun_rilis' => 'required|numeric',
+    'durasi' => 'required|numeric',
+    'rating' => 'required|numeric|between:1,10',
+], [
+    'judul.required' => 'Judul film tidak boleh kosong',
+    'judul.max' => 'Judul film maksimal 255 karakter',
+
+    'sutradara.required' => 'Nama sutradara tidak boleh kosong',
+    'sutradara.max' => 'Nama sutradara maksimal 255 karakter',
+
+    'tahun_rilis.required' => 'Tahun rilis tidak boleh kosong',
+    'tahun_rilis.numeric' => 'Tahun rilis harus berupa angka',
+
+    'durasi.required' => 'Durasi tidak boleh kosong',
+    'durasi.numeric' => 'Durasi harus berupa angka',
+
+    'rating.required' => 'Rating tidak boleh kosong',
+    'rating.numeric' => 'Rating harus berupa angka',
+    'rating.between' => 'Rating harus antara 1 sampai 10',
+]);
+
+Movie::create($validated);
+
+return to_route('Movie.index')
+    ->withSuccess('Data movie berhasil ditambahkan');
     }
 
     /**
