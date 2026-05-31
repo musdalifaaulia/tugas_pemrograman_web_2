@@ -19,6 +19,7 @@
                 <th>Tahun Rilis</th>
                 <th>Durasi</th>
                 <th>Rating</th>
+                <th>Aksi</th>
             </tr>
         </thead>
 
@@ -31,6 +32,11 @@
                     <td>{{ $item->tahun_rilis }}</td>
                     <td>{{ $item->durasi }} menit</td>
                     <td>{{ $item->rating }}</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" href="{{ route('Movie.edit', $item) }}" role="button">
+                            Edit
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
