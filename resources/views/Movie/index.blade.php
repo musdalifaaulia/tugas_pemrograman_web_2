@@ -32,10 +32,18 @@
                     <td>{{ $item->tahun_rilis }}</td>
                     <td>{{ $item->durasi }} menit</td>
                     <td>{{ $item->rating }}</td>
-                    <td>
-                        <a class="btn btn-warning btn-sm" href="{{ route('Movie.edit', $item) }}" role="button">
-                            Edit
-                        </a>
+                    <td style="white-space: nowrap;">
+                        <a class="btn btn-warning btn-sm" href="{{ route('Movie.edit', $item) }}" role="button">Edit</a>
+
+                        <form action="{{ route('Movie.destroy', $item) }}" method="POST" class="d-inline">
+                            @method('DELETE')
+                            @csrf
+
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Anda yakin?')">
+                                Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

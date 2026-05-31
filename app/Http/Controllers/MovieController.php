@@ -13,7 +13,7 @@ class MovieController extends Controller
     public function index()
     {
         return view('Movie.index', [
-        'title' => 'Data Movie',
+        'title' => 'Movie',
         'movies' => Movie::latest()->get(),
         ]);
     }
@@ -122,6 +122,8 @@ return to_route('Movie.index')
      */
     public function destroy(Movie $movie)
     {
-        //
+    $movie->delete($movie);
+            return to_route('Movie.index')->withSuccess('Data berhasil dihapus');
     }
+    
 }

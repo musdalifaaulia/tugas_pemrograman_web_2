@@ -9,4 +9,5 @@ Route::get('/Movie/create', [MovieController::class, 'create'])->name('Movie.cre
 Route::post('/Movie/store', [MovieController::class, 'store'])->name('Movie.store');
 Route::get('/Movie/{movie}/edit', [MovieController::class, 'edit'])->name('Movie.edit');
 Route::put('/Movie/{movie}', [MovieController::class, 'update'])->name('Movie.update');
+Route::delete('/Movie/{movie}', [MovieController::class, 'destroy'])->name('Movie.destroy');
 
