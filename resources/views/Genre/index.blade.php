@@ -50,6 +50,7 @@
                     <td>{{ $item->deskripsi }}</td>
                     <td>{{ $item->status }}</td>
                     <td style="white-space: nowrap;">
+                        <a class="btn btn-info btn-sm" href="{{ route('genre.show', $item) }}"role="button">Detail</a>
                         <a class="btn btn-warning btn-sm" href="{{ route('genre.edit', $item) }}"role="button">Edit</a>
                         <form action="{{ route('genre.destroy', $item) }}" method="POST" class="d-inline">
                             @method('DELETE')
@@ -67,7 +68,7 @@
 
             @empty
                 <tr>
-                    <td colspan="4" class="text-center">
+                    <td colspan="5" class="text-center">
                         Data Genre Tidak Ditemukan
                     </td>
                 </tr>

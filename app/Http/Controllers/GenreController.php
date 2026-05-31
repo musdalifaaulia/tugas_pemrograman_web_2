@@ -67,7 +67,11 @@ return to_route('genre.index')
      */
     public function show(Genre $genre)
     {
-        //
+        return view('genre.show', 
+        ['title' => 'Detail Genre',
+        'genre'=> $genre,
+        
+        ]);
     }
 
     /**
