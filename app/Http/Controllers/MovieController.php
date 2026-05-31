@@ -12,7 +12,10 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        return view('Movie.index', [
+        'title' => 'Data Movie',
+        'movies' => Movie::latest()->get(),
+        ]);
     }
 
     /**

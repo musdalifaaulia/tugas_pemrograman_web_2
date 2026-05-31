@@ -18,7 +18,17 @@ class MovieFactory extends Factory
     public function definition(): array
     {
         return [
-            'judul' => fake()->sentence(3),
+            'judul' => fake()->randomElement([
+            'Laskar Pelangi',
+            'Dilan 1990',
+            'Pengabdi Setan',
+            'KKN di Desa Penari',
+            'Habibie dan Ainun',
+            'Miracle in Cell No 7',
+            'Ngeri Ngeri Sedap',
+            'Yowis Ben',
+            'Suzzanna',
+            'Sang Pencerah']),
             'sutradara' => fake()->name(),
             'tahun_rilis' => fake()->year(),
             'durasi' => fake()->numberBetween(80,180),
