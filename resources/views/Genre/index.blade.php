@@ -8,6 +8,8 @@
         </div>
     @endsession
 
+    <a class="btn btn-primary mb-3" href="{{ route('genre.create') }}" role="button">Create</a>
+
     <form action="{{ route('genre.index') }}" method="GET" class="mb-3">
         <div class="row">
 

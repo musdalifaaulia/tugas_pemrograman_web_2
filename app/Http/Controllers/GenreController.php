@@ -30,7 +30,8 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('genre.create', 
+        ['title' => 'Tambah Genre',]);
     }
 
     /**
@@ -38,7 +39,27 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $validated = $request->validate([
+    'nama_genre' => 'required|max:255',
+    'deskripsi' => 'required|max:255',
+    'status' => 'required|max:255',
+], [
+
+    'nama_genre.required' => 'Nama Genre tidak boleh kosong',
+    'nama_genre.max' => 'Nama Genre maksimal 255 karakter',
+
+    'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+    'deskripsi.max' => 'Deskripsi maksimal 255 karakter',
+
+    'status.required' => 'Status tidak boleh kosong',
+    'status.max' => 'Status maksimal 255 karakter',
+
+]);
+
+Genre::create($validated);
+
+return to_route('genre.index')
+    ->withSuccess('Data Genre berhasil ditambahkan');
     }
 
     /**
