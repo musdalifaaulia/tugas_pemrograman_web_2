@@ -113,6 +113,7 @@ return to_route('genre.index')
      */
     public function destroy(Genre $genre)
     {
-        //
+        $genre->delete($genre);
+            return to_route('genre.index')->withSuccess('Data Genre berhasil dihapus');
     }
 }

@@ -51,6 +51,15 @@
                     <td>{{ $item->status }}</td>
                     <td style="white-space: nowrap;">
                         <a class="btn btn-warning btn-sm" href="{{ route('genre.edit', $item) }}"role="button">Edit</a>
+                        <form action="{{ route('genre.destroy', $item) }}" method="POST" class="d-inline">
+                            @method('DELETE')
+                            @csrf
+
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Anda yakin?')">
+                                Delete
+                            </button>
+                        </form>
 
                     </td>
 
