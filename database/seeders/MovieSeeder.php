@@ -1,22 +1,19 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\User;
+use App\Models\Movie;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class MovieSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-        $this->call([
-        MovieSeeder::class,
-        ]);
+        Movie::factory()
+        ->count(100)
+        ->create();
     }
 }
