@@ -94,7 +94,10 @@ return to_route('review.index')
      */
     public function show(Review $review)
     {
-        //
+        return view('review.show', [
+            'title' => 'Detail Review',
+            'review' => $review,
+        ]);
     }
 
     /**

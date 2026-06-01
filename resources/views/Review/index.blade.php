@@ -70,6 +70,8 @@
                     <td>{{ $review->tanggal_review }}</td>
                     <td>{{ $review->genre->nama_genre }}</td>
                     <td style="white-space: nowrap;">
+                        <a class="btn btn-info btn-sm" href="{{ route('review.show', $review) }}"
+                            role="button">Detail</a>
                         <a class="btn btn-warning btn-sm" href="{{ route('review.edit', $review) }}"
                             role="button">Edit</a>
                         <form action="{{ route('review.destroy', $review) }}" method="POST" class="d-inline">
