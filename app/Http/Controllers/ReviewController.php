@@ -151,6 +151,7 @@ return to_route('review.index')
      */
     public function destroy(Review $review)
     {
-        //
+    $review->delete();
+        return to_route('review.index')->withSuccess('Data Dusun berhasil dihapus');
     }
 }
