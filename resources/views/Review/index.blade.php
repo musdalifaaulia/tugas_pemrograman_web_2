@@ -54,6 +54,7 @@
                 <th>Rating</th>
                 <th>Tanggal Review</th>
                 <th>Genre</th>
+                <th>Aksi</th>
             </tr>
 
         </thead>
@@ -68,6 +69,10 @@
                     <td>{{ $review->rating }}</td>
                     <td>{{ $review->tanggal_review }}</td>
                     <td>{{ $review->genre->nama_genre }}</td>
+                    <td style="white-space: nowrap;">
+                        <a class="btn btn-warning btn-sm" href="{{ route('review.edit', $review) }}"
+                            role="button">Edit</a>
+                    </td>
                 </tr>
             @empty
                 <tr>

@@ -102,7 +102,11 @@ return to_route('review.index')
      */
     public function edit(Review $review)
     {
-        //
+        return view('review.edit', [
+            'title' => 'Edit Review',
+            'review' => $review,
+            'genres' => Genre::latest()->get(),
+        ]);
     }
 
     /**
@@ -110,7 +114,36 @@ return to_route('review.index')
      */
     public function update(Request $request, Review $review)
     {
-        //
+        $validated = $request->validate([
+    'nama_pengguna' => 'required|max:255',
+    'komentar' => 'required|max:255',
+    'rating' => 'required|integer|min:1|max:10',
+    'tanggal_review' => 'required|date',
+    'genre_id' => 'required|exists:genres,id',
+], [
+
+    'nama_pengguna.required' => 'Nama Pengguna tidak boleh kosong',
+    'nama_pengguna.max' => 'Nama Pengguna maksimal 255 karakter',
+
+    'komentar.required' => 'Komentar tidak boleh kosong',
+    'komentar.max' => 'Komentar maksimal 255 karakter',
+
+    'rating.required' => 'Rating tidak boleh kosong',
+    'rating.integer' => 'Rating harus berupa angka',
+    'rating.min' => 'Rating minimal 1',
+    'rating.max' => 'Rating maksimal 10',
+
+    'tanggal_review.required' => 'Tanggal Review tidak boleh kosong',
+    'tanggal_review.date' => 'Tanggal Review tidak valid',
+
+    'genre_id.required' => 'Genre tidak boleh kosong',
+    'genre_id.exists' => 'Genre yang dipilih tidak ditemukan',
+]);
+
+$review->update($validated);
+
+return to_route('review.index')
+    ->withSuccess('Data Review berhasil diubah');
     }
 
     /**
