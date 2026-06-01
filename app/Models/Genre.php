@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['nama_genre', 'deskripsi', 'status'])]
 class Genre extends Model
 {
-    public function movies(): HasMany
+    use HasFactory;
+
+    protected $fillable = [
+        'nama_genre',
+        'deskripsi',
+        'status'
+    ];
+
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }

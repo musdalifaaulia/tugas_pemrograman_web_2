@@ -1,0 +1,84 @@
+<x-app>
+
+    <x-slot:title>{{ $title }}</x-slot>
+
+    @session('success')
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endsession
+
+    <form action="">
+
+        <div class="row g-3 mb-3">
+
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="keyword" name="keyword"
+                    placeholder="Search reviewer name ..." value="{{ request('keyword') }}">
+            </div>
+
+            <div class="col-md-4">
+
+                <select class="form-select" id="genre_id" name="genre_id">
+
+                    <option value="">All Genre</option>
+
+                    @foreach ($genres as $genre)
+                        <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>
+                            {{ $genre->nama_genre }}
+                        </option>
+                    @endforeach
+
+                </select>
+
+            </div>
+
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-success">Search</button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <table class="table table-bordered border-primary">
+
+        <thead class="table-primary">
+
+            <tr>
+                <th>No</th>
+                <th>Nama Pengguna</th>
+                <th>Komentar</th>
+                <th>Rating</th>
+                <th>Tanggal Review</th>
+                <th>Genre</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @forelse ($reviews as $review)
+                <tr>
+                    <td>{{ $reviews->firstItem() + $loop->index }}</td>
+                    <td>{{ $review->nama_pengguna }}</td>
+                    <td>{{ $review->komentar }}</td>
+                    <td>{{ $review->rating }}</td>
+                    <td>{{ $review->tanggal_review }}</td>
+                    <td>{{ $review->genre->nama_genre }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center">
+                        Data Review Tidak Ditemukan
+                    </td>
+                </tr>
+            @endforelse
+
+        </tbody>
+
+    </table>
+
+    {{ $reviews->links() }}
+
+</x-app>

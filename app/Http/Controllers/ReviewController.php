@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -12,7 +13,25 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::latest();
+        $keyword = request('keyword');
+
+        if ($keyword) {
+        $reviews->where('nama_pengguna', 'like', '%' . $keyword . '%');}
+
+        $genre_id = request('genre_id');
+
+        if ($genre_id) {
+        $reviews->where('genre_id', $genre_id);}
+
+        return view('review.index', [
+        'title' => 'Review',
+
+        'genres' => Genre::latest()->get(),
+
+        'reviews' => $reviews->paginate(5)->withQueryString(),
+
+]);
     }
 
     /**

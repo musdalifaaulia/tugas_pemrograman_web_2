@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->date('tanggal_review');
 
-            $table->foreignId('movie_id')
+            $table->foreignId('genre_id')
                 ->constrained()
                 ->cascadeOnDelete();
             $table->timestamps();

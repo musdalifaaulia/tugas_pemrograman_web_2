@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/Movie', [MovieController::class, 'index']);
@@ -13,3 +14,4 @@ Route::put('/Movie/{movie}', [MovieController::class, 'update'])->name('Movie.up
 Route::delete('/Movie/{movie}', [MovieController::class, 'destroy'])->name('Movie.destroy');
 
 Route::resource('genre', GenreController::class);
+Route::resource('review', ReviewController::class);

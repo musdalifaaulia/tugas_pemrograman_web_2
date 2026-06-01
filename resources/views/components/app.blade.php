@@ -30,7 +30,7 @@
 
                     <a class="nav-link" href="{{ route('genre.index') }}">Genre</a>
 
-                    <a class="nav-link" href="#">Review</a>
+                    <a class="nav-link" href="{{ route('review.index') }}">Review</a>
 
                 </div>
 
