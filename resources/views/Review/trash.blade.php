@@ -24,6 +24,13 @@
                     Restore
                 </button>
             </form>
+
+            <form action="{{ route('review.forceDelete', $item) }}" method="POST" class="d-inline">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger btn-sm"
+                    onclick="return confirm('Anda yakin ingin menghapus secara permanen?')">Force Delete</button>
+            </form>
         </li>
     @endforeach
 </ul>

@@ -183,7 +183,7 @@ try {
     public function destroy(Review $review)
     {
     $review->delete($review);
-        return to_route('review.index')->withSuccess('Data Dusun berhasil dihapus');
+        return to_route('review.index')->withSuccess('Data Review berhasil dihapus');
     }
 
     // soft deletes
@@ -199,5 +199,12 @@ try {
     {
         $review->restore();
         return to_route('review.trash')->withSuccess('Data berhasil dikembalikan');
+    }
+
+
+    public function forceDelete(Review $review)
+    {
+        $review->forceDelete();
+        return to_route('review.trash')->withSuccess('Data berhasil dihapus secara permanen');
     }
 }

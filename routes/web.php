@@ -19,3 +19,4 @@ Route::resource('review', ReviewController::class);
 //SOFT DELETES
 Route::get('/review/trash', [ReviewController::class, 'trash'])->name('review.trash');
 Route::put('/review/{review}/restore', [ReviewController::class, 'restore'])->name('review.restore')->withTrashed();
+Route::delete('/review/{review}/force-delete', [ReviewController::class, 'forceDelete'])->name('review.forceDelete')->withTrashed();
