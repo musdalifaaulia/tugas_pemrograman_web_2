@@ -20,7 +20,7 @@ class GenreController extends Controller
                     ->orWhere('deskripsi', 'like', "%{$search}%")
                     ->orWhere('status', 'like', "%{$search}%");
             })
-            ->paginate(5)
+            ->paginate(7)
             ->withQueryString(),
     ]);
     }

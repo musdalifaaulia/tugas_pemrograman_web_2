@@ -64,6 +64,7 @@ class GenreSeeder extends Seeder
             ],
         ];
 
+        
         foreach ($genres as $genre)
         {
             Genre::create($genre);
