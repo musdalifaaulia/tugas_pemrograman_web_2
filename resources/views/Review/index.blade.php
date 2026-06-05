@@ -54,6 +54,7 @@
                 <th>Rating</th>
                 <th>Tanggal Review</th>
                 <th>Genre</th>
+                <th>Gender</th>
                 <th>Aksi</th>
             </tr>
 
@@ -69,6 +70,7 @@
                     <td>{{ $review->rating }}</td>
                     <td>{{ $review->tanggal_review }}</td>
                     <td>{{ $review->genre->nama_genre }}</td>
+                    <td>{{ $review->gender }}</td>
                     <td style="white-space: nowrap;">
                         <a class="btn btn-info btn-sm" href="{{ route('review.show', $review) }}"
                             role="button">Detail</a>
