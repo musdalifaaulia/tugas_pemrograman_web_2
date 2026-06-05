@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -62,6 +63,8 @@ class ReviewController extends Controller
 
     'genre_id' => 'required|exists:genres,id',
 
+    'gender' => 'required|in:Laki-laki,Perempuan',
+
 ], [
 
     'nama_pengguna.required' => 'Nama Pengguna tidak boleh kosong',
@@ -81,12 +84,26 @@ class ReviewController extends Controller
     'genre_id.required' => 'Genre tidak boleh kosong',
     'genre_id.exists' => 'Genre yang dipilih tidak ditemukan',
 
-]);
+    'gender.required' => 'Gender tidak boleh kosong',
+    'gender.in' => 'Gender tidak valid',
+        ]);
 
-Review::create($validated);
+    try {
+        DB::beginTransaction(); 
+        Review::create($validated);
+        DB::commit();
 
-return to_route('review.index')
-    ->withSuccess('Data Review berhasil ditambahkan');
+    return to_route('review.index')
+        ->withSuccess('Data Review berhasil ditambahkan');
+
+    }
+    catch (\Exception $e) {
+
+    DB::rollBack();
+
+    return to_route('review.create')
+        ->withError('Data Review gagal ditambahkan');
+    }
     }
 
     /**
