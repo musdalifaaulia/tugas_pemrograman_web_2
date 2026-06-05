@@ -32,6 +32,8 @@
 
                     <a class="nav-link" href="{{ route('review.index') }}">Review</a>
 
+                    <a class="nav-link" href="{{ route('review.trash') }}">Trash</a>
+
                 </div>
 
             </div>

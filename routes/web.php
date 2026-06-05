@@ -15,3 +15,7 @@ Route::delete('/Movie/{movie}', [MovieController::class, 'destroy'])->name('Movi
 
 Route::resource('genre', GenreController::class);
 Route::resource('review', ReviewController::class);
+
+//SOFT DELETES
+Route::get('/review/trash', [ReviewController::class, 'trash'])->name('review.trash');
+

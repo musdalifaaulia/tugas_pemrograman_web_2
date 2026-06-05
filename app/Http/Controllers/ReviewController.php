@@ -182,7 +182,16 @@ try {
      */
     public function destroy(Review $review)
     {
-    $review->delete();
+    $review->delete($review);
         return to_route('review.index')->withSuccess('Data Dusun berhasil dihapus');
+    }
+
+    // soft deletes
+    public function trash()
+    {
+        return view('review.trash', [
+            'title' => 'Trash Review',
+            'review' => Review::onlyTrashed()->get(),
+        ]);
     }
 }
