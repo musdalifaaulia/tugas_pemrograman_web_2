@@ -71,6 +71,23 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+
+            <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
+                <option value="">-- Pilih Gender --</option>
+                <option value="Laki-laki" {{ old('gender', $review->gender) == 'Laki-laki' ? 'selected' : '' }}>
+                    Laki-laki</option>
+                <option value="Perempuan" {{ old('gender', $review->gender) == 'Perempuan' ? 'selected' : '' }}>
+                    Perempuan</option>
+            </select>
+
+            @error('gender')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+
         <a class="btn btn-warning" href="{{ route('review.index') }}" role="button">
             Cancel
         </a>

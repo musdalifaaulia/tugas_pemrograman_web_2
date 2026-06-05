@@ -140,6 +140,7 @@ class ReviewController extends Controller
     'rating' => 'required|integer|min:1|max:10',
     'tanggal_review' => 'required|date',
     'genre_id' => 'required|exists:genres,id',
+    'gender' => 'required|in:Laki-laki,Perempuan',
 ], [
 
     'nama_pengguna.required' => 'Nama Pengguna tidak boleh kosong',
@@ -158,12 +159,22 @@ class ReviewController extends Controller
 
     'genre_id.required' => 'Genre tidak boleh kosong',
     'genre_id.exists' => 'Genre yang dipilih tidak ditemukan',
+
+    'gender.required' => 'Gender tidak boleh kosong',
+    'gender.in' => 'Gender tidak valid',
 ]);
 
-$review->update($validated);
-
-return to_route('review.index')
-    ->withSuccess('Data Review berhasil diubah');
+try {
+    DB::beginTransaction();
+    $review->update($validated);
+    DB::commit();
+    return to_route('review.index')
+        ->withSuccess('Data Review berhasil diubah');
+    } catch (\Exception $e) {
+    DB::rollBack();
+    return to_route('review.edit', $review)
+        ->withError('Data Review gagal diubah');
+        }
     }
 
     /**
