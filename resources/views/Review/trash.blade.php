@@ -4,8 +4,7 @@
     </div>
 @endsession
 
-<a class="btn btn-warning mb-3" href="{{ route('review.index') }}" role="button">Kembali</a>
-
+<a class="btn btn-primary mb-3" href="{{ route('review.index') }}" role="button">Kembali</a>
 <ul class="list-group">
     @foreach ($reviews as $item)
         <li class="list-group-item">
@@ -15,6 +14,16 @@
             Rating: {{ $item->rating }} --
             {{ $item->tanggal_review }} --
             {{ $item->genre?->nama_genre }}
+
+            <form action="{{ route('review.restore', $item) }}" method="POST" class="d-inline">
+                @method('PUT')
+                @csrf
+
+                <button type="submit" class="btn btn-warning btn-sm"
+                    onclick="return confirm('Anda yakin ingin mengembalikan data?')">
+                    Restore
+                </button>
+            </form>
         </li>
     @endforeach
 </ul>

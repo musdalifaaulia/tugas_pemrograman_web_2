@@ -194,4 +194,10 @@ try {
             'review' => Review::onlyTrashed()->get(),
         ]);
     }
+
+    public function restore(Review $review)
+    {
+        $review->restore();
+        return to_route('review.trash')->withSuccess('Data berhasil dikembalikan');
+    }
 }
